@@ -10,13 +10,13 @@ Hummingbird.Logger = function(element, socket, options) {
     decimalPlaces: 1
   };
 
-  this.options = $.extend(defaults, options);
+  this.options = jQuery.extend(defaults, options);
   this.initialize();
 };
 
 Hummingbird.Logger.prototype = new Hummingbird.Base();
 
-$.extend(Hummingbird.Logger.prototype, {
+jQuery.extend(Hummingbird.Logger.prototype, {
   name: "Logger",
   onMessage: function(message, average) {
     console.log("Minute Average: " + average.toFixed(this.options.decimalPlaces));

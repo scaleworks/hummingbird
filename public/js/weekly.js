@@ -10,13 +10,13 @@ Hummingbird.Weekly.init = function() {
       weekJson += "?use_prod";
     }
 
-    $.getJSON(weekJson, function(data) {
-      var dayTemplate = $("#day_template");
+    jQuery.getJSON(weekJson, function(data) {
+      var dayTemplate = jQuery("#day_template");
 
       var today = new Date();
       today.setUTCHours(0); today.setUTCMinutes(0); today.setUTCSeconds(0); today.setUTCMilliseconds(0);
 
-      $.each(data, function() {
+      jQuery.each(data, function() {
         var day = new Date(this.day);
         if(day.getTime() == today.getTime()) {
           var weekDay = "Today";

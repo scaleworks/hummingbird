@@ -1,8 +1,8 @@
-$.fn.hummingbirdCount = function(socket, options) {
+jQuery.fn.hummingbirdCount = function(socket, options) {
   if(this.length == 0) { return; }
 
   this.each(function() {
-    new Hummingbird.Count($(this), socket, options);
+    new Hummingbird.Count(jQuery(this), socket, options);
   });
 
   return this;
@@ -21,13 +21,13 @@ Hummingbird.Count = function(element, socket, options) {
     decimalPlaces: 0
   };
 
-  this.options = $.extend(defaults, options);
+  this.options = jQuery.extend(defaults, options);
   this.initialize();
 };
 
 Hummingbird.Count.prototype = new Hummingbird.Base();
 
-$.extend(Hummingbird.Count.prototype, {
+jQuery.extend(Hummingbird.Count.prototype, {
   name: "Count",
   onMessage: function(value, average) {
     this.element.text(average.toFixed(this.options.decimalPlaces));

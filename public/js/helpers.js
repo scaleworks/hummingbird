@@ -35,49 +35,49 @@ Number.prototype.commify = function() {
 };
 
 // Custom sorting plugin
-(function($) {
-  $.fn.sorted = function(customOptions) {
+(function(jQuery) {
+  jQuery.fn.sorted = function(customOptions) {
     var options = {
       reversed: false,
       by: function(a) { return a.text(); }
     };
-    $.extend(options, customOptions);
-    $data = $(this);
-    arr = $data.get();
+    jQuery.extend(options, customOptions);
+    jQuerydata = jQuery(this);
+    arr = jQuerydata.get();
     arr.sort(function(a, b) {
-      var valA = options.by($(a));
-      var valB = options.by($(b));
+      var valA = options.by(jQuery(a));
+      var valB = options.by(jQuery(b));
       if (options.reversed) {
         return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;
       } else {
         return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
       }
     });
-    return $(arr);
+    return jQuery(arr);
   };
 })(jQuery);
 
 // Fix delay() to be stoppable...
-(function($) {
-  $.fn.delay = function( time, type ) {
+(function(jQuery) {
+  jQuery.fn.delay = function( time, type ) {
 		time = jQuery.fx ? jQuery.fx.speeds[time] || time : time;
 		type = type || "fx";
 
 		return this.queue( type, function() {
 			var elem = this;
-			$(elem).data('delay_timer', setTimeout(function() {
+			jQuery(elem).data('delay_timer', setTimeout(function() {
 				jQuery.dequeue( elem, type );
 			}, time ));
 		});
   };
 
-  $.fn.stopDelay = function() {
-    clearTimeout($(this).data('delay_timer'));
-    return $(this);
+  jQuery.fn.stopDelay = function() {
+    clearTimeout(jQuery(this).data('delay_timer'));
+    return jQuery(this);
   };
 })(jQuery);
 
 
-var console = window.console;
-  if (!console) console = {log: function(){ }, error: function(){ }};
+//var console = window.console;
+//  if (!console) console = {log: function(){ }, error: function(){ }};
 

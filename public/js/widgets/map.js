@@ -1,8 +1,8 @@
-$.fn.hummingbirdMap = function(socket, options) {
+jQuery.fn.hummingbirdMap = function(socket, options) {
   if(this.length == 0) { return; }
 
   this.each(function() {
-    new Hummingbird.Map($(this), socket, options);
+    new Hummingbird.Map(jQuery(this), socket, options);
   });
 
   return this;
@@ -41,14 +41,14 @@ Hummingbird.Map = function(element, socket, options) {
     decimalPlaces: 0
   };
 
-  this.options = $.extend(defaults, options);
+  this.options = jQuery.extend(defaults, options);
   this.initialize();
 };
 
 
 Hummingbird.Map.prototype = new Hummingbird.Base();
 
-$.extend(Hummingbird.Map.prototype, {
+jQuery.extend(Hummingbird.Map.prototype, {
   name: "Map",
   onMessage: function(value, average) {
     if(value && value.length > 0) {
@@ -64,7 +64,7 @@ $.extend(Hummingbird.Map.prototype, {
   addMarker: function(lon, lat, radius, text) {
     var id = ("mark_" + lon + "_" + lat).replace(/[^0-9a-z_]/g, '');
 
-    var existing = $("#" + id);
+    var existing = jQuery("#" + id);
     if(existing.length == 0) {
       // If marker doesn't exist, create it
       var geometry = {
@@ -76,7 +76,7 @@ $.extend(Hummingbird.Map.prototype, {
       };
 
       this.map.add(this.po.geoJson().features([{ geometry: geometry }]));
-      existing = $("#" + id);
+      existing = jQuery("#" + id);
     } else {
       // Stop the current animation queue and set opacity back to 1
       existing.stop(true).stopDelay().css({ opacity: 1 });
@@ -84,7 +84,7 @@ $.extend(Hummingbird.Map.prototype, {
 
     // After 4 seconds, fade marker out then remove the whole layer
     existing.delay(4000).animate({ opacity: 0 }, 1000, function() {
-      $(this).parent().parent().parent().remove();
+      jQuery(this).parent().parent().parent().remove();
     });
   }
 });

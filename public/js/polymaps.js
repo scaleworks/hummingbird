@@ -2027,9 +2027,9 @@ po.interact = function() {
 
 po.fullscreen = function() {
   var fullscreen = {};
-  var svg = $(po.svg("svg"))
-  var circle = $(po.svg("circle"));
-  var arrow = $(po.svg("path"));
+  var svg = jQuery(po.svg("svg"))
+  var circle = jQuery(po.svg("circle"));
+  var arrow = jQuery(po.svg("path"));
   var map;
   var container;
   var isFullscreen = 0;
@@ -2037,7 +2037,7 @@ po.fullscreen = function() {
   svg.append(circle);
   svg.append(arrow);
   svg.click(goFullscreen);
-  $(window).bind("keydown",function(e){
+  jQuery(window).bind("keydown",function(e){
     e.which == 27 && isFullscreen && goFullscreen();
   });
 
@@ -2070,7 +2070,7 @@ po.fullscreen = function() {
     if (!arguments.length) return map;
 
     if (map = x) {
-      container = $(map.container());
+      container = jQuery(map.container());
       draw();
     }
 

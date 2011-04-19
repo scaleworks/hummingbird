@@ -1,8 +1,8 @@
-$.fn.hummingbirdGraph = function(socket, options) {
+jQuery.fn.hummingbirdGraph = function(socket, options) {
   if(this.length == 0) { return; }
 
   this.each(function() {
-    new Hummingbird.Graph($(this), socket, options);
+    new Hummingbird.Graph(jQuery(this), socket, options);
   });
 
   return this;
@@ -27,7 +27,7 @@ Hummingbird.Graph = function(element, socket, options) {
     averageOver: 0.5
   }
 
-  this.options = $.extend(defaults, options);
+  this.options = jQuery.extend(defaults, options);
 
   this.scale = 50;
   this.element = element;
@@ -41,7 +41,7 @@ Hummingbird.Graph = function(element, socket, options) {
 
 Hummingbird.Graph.prototype = new Hummingbird.Base();
 
-$.extend(Hummingbird.Graph.prototype, {
+jQuery.extend(Hummingbird.Graph.prototype, {
 
   name: "Graph",
 
@@ -164,7 +164,7 @@ $.extend(Hummingbird.Graph.prototype, {
     var borderBottom = Math.min(oldHeight, newHeight);
     var borderTop = this.graphHeight - lineHeight - borderBottom;
 
-    var line = $("<div style='border-bottom: " + borderBottom + "px solid #333; height: " + lineHeight + "px; border-top: " + borderTop + "px solid #333; background-color: #FFF' class='line'></div>");
+    var line = jQuery("<div style='border-bottom: " + borderBottom + "px solid #333; height: " + lineHeight + "px; border-top: " + borderTop + "px solid #333; background-color: #FFF' class='line'></div>");
     line.prependTo(this.graph);
     this.graph.find("div:nth-child(200)").remove();
   },
@@ -196,7 +196,7 @@ $.extend(Hummingbird.Graph.prototype, {
     }
 
 
-    var line = $("<div style='width: " + this.lineWidth + "px; height: " + height + "px; border-top: " + lineHeight + "px solid " + backgroundColor + "; background-color: " + color + "; border-bottom: 1px solid " + color + ";' class='line'></div>");
+    var line = jQuery("<div style='width: " + this.lineWidth + "px; height: " + height + "px; border-top: " + lineHeight + "px solid " + backgroundColor + "; background-color: " + color + "; border-bottom: 1px solid " + color + ";' class='line'></div>");
     line.prependTo(this.graph);
 
     if(!isInitialFill) {

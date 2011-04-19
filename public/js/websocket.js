@@ -101,11 +101,11 @@ Hummingbird.WebSocket.prototype = {
   }
 }
 
-$.fn.hummingbirdGraph = function(socket, options) {
+jQuery.fn.hummingbirdGraph = function(socket, options) {
   if(this.length == 0) { return; }
 
   this.each(function() {
-    new Hummingbird.WebSocket.Graph($(this), socket, options);
+    new Hummingbird.WebSocket.Graph(jQuery(this), socket, options);
   });
 
   return this;
@@ -120,8 +120,8 @@ Hummingbird.WebSocket.Dashboard.prototype.start = function() {
   this.socket = new io.Socket(this.webSocketURI(), {port: this.webSocketPort()});
   this.socket.connect();
 
-  var totalDiv = $("#log");
-  totalDiv.find('div.graph').width($(window).width() - 160);
+  var totalDiv = jQuery("#log");
+  totalDiv.find('div.graph').width(jQuery(window).width() - 160);
   var totalGraph = new Hummingbird.Graph(totalDiv, { ratePerSecond: 20, logDate: true });
 
   var self = this;
@@ -155,7 +155,7 @@ Hummingbird.WebSocket.Weekly.prototype.start = function() {
   this.socket.on('message', function(msg) {
     var data = JSON.parse(msg);
     if(data.total && data.total > 0) {
-      var el = $("div.day:first-child div.all_views");
+      var el = jQuery("div.day:first-child div.all_views");
       var prevTotal = el.data("total");
       el.text((prevTotal + data.total).commify()).data('total', prevTotal + data.total);
     }
